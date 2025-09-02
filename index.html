@@ -3,115 +3,442 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camply - Plan Your Next Adventure</title>
-    <meta name="description" content="Camply: The easiest way to plan, organize, and enjoy your next camping trip. Discover campsites, manage checklists, and connect with fellow campers.">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Camply - Your Ultimate Camping Companion</title>
+    <meta name="description" content="Camply is the comprehensive camping app that helps you discover, plan, and enjoy unforgettable outdoor adventures. From campsite discovery to trip planning, we've got you covered.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Montserrat', Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(120deg, #4e9a51 0%, #1e3c72 100%);
-            color: #fff;
-            min-height: 100vh;
+            box-sizing: border-box;
         }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2d5a27 0%, #4a7c59 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><path d="M0,50 Q250,0 500,50 T1000,50 L1000,100 L0,100 Z"/></svg>') bottom center/cover no-repeat;
+        }
+        
         .container {
-            max-width: 700px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 20px 40px 20px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .tagline {
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin-bottom: 24px;
+            opacity: 0.95;
+        }
+        
+        .description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+        
+        .app-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .badge:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section:nth-child(even) {
+            background: #f8faf9;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2d5a27;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #666;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(45,90,39,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(45,90,39,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 24px;
+            display: block;
+        }
+        
+        .feature h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #2d5a27;
+        }
+        
+        .feature p {
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        .stats {
+            background: linear-gradient(135deg, #2d5a27 0%, #4a7c59 100%);
+            color: white;
             text-align: center;
         }
-        .logo {
-            font-size: 2.8rem;
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .stat {
+            padding: 30px 20px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
             font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
-        .subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            color: #e0ffe0;
-        }
-        .cta {
-            background: #fff;
-            color: #1e3c72;
-            padding: 16px 36px;
-            border-radius: 30px;
+        
+        .stat-label {
             font-size: 1.1rem;
-            font-weight: 700;
+            opacity: 0.9;
+        }
+        
+        .support-section {
+            background: #f8faf9;
+            text-align: center;
+        }
+        
+        .support-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .support-card {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(45,90,39,0.1);
+            margin: 40px 0;
+        }
+        
+        .support-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: #2d5a27;
+        }
+        
+        .support-card p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            color: #2d5a27;
+            font-weight: 500;
+        }
+        
+        .contact-info a {
+            color: #4a7c59;
             text-decoration: none;
-            box-shadow: 0 4px 16px rgba(30,60,114,0.12);
-            transition: background 0.2s, color 0.2s;
-            margin-top: 20px;
-            display: inline-block;
         }
-        .cta:hover {
-            background: #4e9a51;
-            color: #fff;
-        }
-        .features {
-            margin: 40px 0 30px 0;
-            text-align: left;
-        }
-        .features h2 {
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-            color: #ffe082;
-        }
-        .features ul {
-            list-style: none;
-            padding: 0;
-        }
-        .features li {
-            margin-bottom: 12px;
-            font-size: 1.08rem;
-            padding-left: 1.2em;
-            position: relative;
-        }
-        .features li:before {
-            content: "\2713";
-            color: #ffe082;
-            position: absolute;
-            left: 0;
-        }
-        .contact {
-            margin-top: 40px;
-            font-size: 1.05rem;
-            color: #e0e0e0;
-        }
-        .contact a {
-            color: #ffe082;
+        
+        .contact-info a:hover {
             text-decoration: underline;
         }
-        @media (max-width: 600px) {
-            .container {
-                padding: 30px 8px 20px 8px;
+        
+        .footer {
+            background: #1a1a1a;
+            color: #ccc;
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .footer p {
+            margin-bottom: 10px;
+        }
+        
+        .privacy-links {
+            margin-top: 20px;
+        }
+        
+        .privacy-links a {
+            color: #4a7c59;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        
+        .privacy-links a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 60px 0;
             }
+            
             .logo {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .description {
+                font-size: 1rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section-title {
                 font-size: 2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .feature {
+                padding: 30px 20px;
+            }
+            
+            .support-card {
+                padding: 30px 20px;
+                margin: 20px 0;
+            }
+            
+            .app-badges {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo">Camply</div>
-        <div class="subtitle">Plan, organize, and enjoy your next camping adventure with ease.</div>
-        <a href="#" class="cta">Get Started</a>
-        <div class="features">
-            <h2>Why Camply?</h2>
-            <ul>
-                <li>Discover and bookmark the best campsites</li>
-                <li>Collaborative trip planning with friends and family</li>
-                <li>Customizable checklists for gear and meals</li>
-                <li>Weather forecasts and real-time updates</li>
-                <li>Track your camping achievements</li>
-                <li>All your trips, always in your pocket</li>
-            </ul>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Camply</h1>
+            <p class="tagline">Your Ultimate Camping Companion</p>
+            <p class="description">
+                Discover amazing campsites, plan unforgettable trips, and connect with nature like never before. 
+                Camply transforms your outdoor adventures with smart planning tools, weather insights, and gamified experiences.
+            </p>
+            <div class="app-badges">
+                <a href="#" class="badge">📱 Coming Soon to App Store</a>
+                <a href="#" class="badge">🤖 Coming Soon to Google Play</a>
+            </div>
         </div>
-        <div class="contact">
-            Need help? Contact us at <a href="mailto:rdjsoftware1@gmail.com">rdjsoftware1@gmail.com</a>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Everything You Need for Perfect Camping</h2>
+            <p class="section-subtitle">
+                From finding the perfect campsite to organizing your gear, Camply provides all the tools you need for memorable outdoor adventures.
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature">
+                    <span class="feature-icon">🏕️</span>
+                    <h3>Campsite Discovery</h3>
+                    <p>Explore thousands of campsites with detailed information, photos, reviews, and real-time availability. Filter by amenities, location, and your preferences.</p>
+                </div>
+                
+                <div class="feature">
+                    <span class="feature-icon">📋</span>
+                    <h3>Smart Trip Planning</h3>
+                    <p>Create detailed trip itineraries with customizable checklists for gear, food, and activities. Never forget essential items again.</p>
+                </div>
+                
+                <div class="feature">
+                    <span class="feature-icon">👥</span>
+                    <h3>Group Collaboration</h3>
+                    <p>Invite friends and family to plan together. Assign tasks, share responsibilities, and coordinate your group camping experience.</p>
+                </div>
+                
+                <div class="feature">
+                    <span class="feature-icon">🌤️</span>
+                    <h3>Weather Integration</h3>
+                    <p>Get accurate weather forecasts for your camping location. Receive alerts about changing conditions to stay safe and prepared.</p>
+                </div>
+                
+                <div class="feature">
+                    <span class="feature-icon">🏆</span>
+                    <h3>Achievement System</h3>
+                    <p>Gamify your camping adventures with achievements, badges, and milestones. Track your outdoor experiences and compete with friends.</p>
+                </div>
+                
+                <div class="feature">
+                    <span class="feature-icon">🍳</span>
+                    <h3>Meal Planning</h3>
+                    <p>AI-powered meal suggestions based on your group size, dietary preferences, and available cooking equipment. Never run out of food ideas.</p>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section class="section stats">
+        <div class="container">
+            <h2 class="section-title">Join the Camply Community</h2>
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Campsites</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Happy Campers</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100K+</div>
+                    <div class="stat-label">Trips Planned</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">4.8⭐</div>
+                    <div class="stat-label">App Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section support-section">
+        <div class="container">
+            <h2 class="section-title">Need Help?</h2>
+            <p class="section-subtitle">
+                Our dedicated support team is here to help you make the most of your Camply experience.
+            </p>
+            
+            <div class="support-content">
+                <div class="support-card">
+                    <h3>📧 Email Support</h3>
+                    <p>
+                        Have a question, suggestion, or need technical assistance? We're here to help! 
+                        Our support team typically responds within 24 hours.
+                    </p>
+                    <div class="contact-info">
+                        <span>📨</span>
+                        <a href="mailto:rdjsoftware1@gmail.com">rdjsoftware1@gmail.com</a>
+                    </div>
+                </div>
+                
+                <div class="support-card">
+                    <h3>💬 What We Can Help With</h3>
+                    <p>
+                        • Technical support and troubleshooting<br>
+                        • Account management and settings<br>
+                        • Feature requests and suggestions<br>
+                        • Bug reports and app improvements<br>
+                        • General camping advice and tips
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Camply. All rights reserved.</p>
+            <p>Crafted with ❤️ for outdoor enthusiasts everywhere.</p>
+            <div class="privacy-links">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
